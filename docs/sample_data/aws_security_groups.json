@@ -1,0 +1,235 @@
+{
+  "SecurityGroups": [
+    {
+      "GroupId": "sg-0a11111111111111a",
+      "GroupName": "web-tier-sg",
+      "Description": "Public web tier",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [{"Key": "Environment", "Value": "prod"}],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 443,
+          "ToPort": 443,
+          "IpRanges": [{"CidrIp": "0.0.0.0/0", "Description": "public https"}],
+          "Ipv6Ranges": [{"CidrIpv6": "::/0"}],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0b22222222222222b",
+      "GroupName": "bastion-sg",
+      "Description": "Jump host, office range only",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [{"Key": "Environment", "Value": "prod"}],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 22,
+          "ToPort": 22,
+          "IpRanges": [{"CidrIp": "198.51.100.10/32", "Description": "office"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0c33333333333333c",
+      "GroupName": "legacy-admin-sg",
+      "Description": "created during instance setup",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 22,
+          "ToPort": 22,
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [{"CidrIpv6": "::/0"}],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0d44444444444444d",
+      "GroupName": "windows-jump-sg",
+      "Description": "RDP host",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 3389,
+          "ToPort": 3389,
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0e55555555555555e",
+      "GroupName": "db-tier-sg",
+      "Description": "MySQL",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 3306,
+          "ToPort": 3306,
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [{"GroupId": "sg-0f66666666666666f", "UserId": "111122223333"}],
+          "PrefixListIds": []
+        },
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 3306,
+          "ToPort": 3306,
+          "IpRanges": [{"CidrIp": "10.0.0.0/8", "Description": "internal"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0f66666666666666f",
+      "GroupName": "app-service-sg",
+      "Description": "App tier behind ALB",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 8080,
+          "ToPort": 8080,
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [{"GroupId": "sg-0a11111111111111a", "UserId": "111122223333"}],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0977777777777777a",
+      "GroupName": "reporting-db-sg",
+      "Description": "SQL Server",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [],
+      "IpPermissions": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": 1433,
+          "ToPort": 1433,
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    },
+    {
+      "GroupId": "sg-0a88888888888888b",
+      "GroupName": "temp-debug-sg",
+      "Description": "open all the things",
+      "VpcId": "vpc-0aaaaaaaaaaaaaaaa",
+      "OwnerId": "111122223333",
+      "Tags": [{"Key": "Environment", "Value": "dev"}],
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ],
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+          "Ipv6Ranges": [],
+          "UserIdGroupPairs": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ]
+}
