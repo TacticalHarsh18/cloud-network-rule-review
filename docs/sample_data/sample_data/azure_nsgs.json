@@ -1,0 +1,191 @@
+[
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-web/providers/Microsoft.Network/networkSecurityGroups/web-nsg",
+    "name": "web-nsg",
+    "location": "eastus",
+    "resourceGroup": "rg-web",
+    "securityRules": [
+      {
+        "name": "AllowHTTPSInbound",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefix": "Internet",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "443",
+        "destinationPortRanges": [],
+        "description": "public https"
+      }
+    ],
+    "defaultSecurityRules": [
+      {
+        "name": "DenyAllInBound",
+        "priority": 65500,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationPortRange": "*"
+      }
+    ]
+  },
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-mgmt/providers/Microsoft.Network/networkSecurityGroups/mgmt-nsg",
+    "name": "mgmt-nsg",
+    "location": "eastus",
+    "resourceGroup": "rg-mgmt",
+    "securityRules": [
+      {
+        "name": "AllowAnyCustomAnyInbound",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "*",
+        "destinationPortRanges": [],
+        "description": "temporary"
+      },
+      {
+        "name": "AllowSSHInbound",
+        "priority": 300,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "22",
+        "destinationPortRanges": [],
+        "description": "admin access"
+      }
+    ],
+    "defaultSecurityRules": [
+      {
+        "name": "DenyAllInBound",
+        "priority": 65500,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationPortRange": "*"
+      }
+    ]
+  },
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-app/providers/Microsoft.Network/networkSecurityGroups/app-nsg",
+    "name": "app-nsg",
+    "location": "eastus",
+    "resourceGroup": "rg-app",
+    "securityRules": [
+      {
+        "name": "DenyAllInbound",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "*",
+        "destinationPortRanges": [],
+        "description": "lockdown"
+      },
+      {
+        "name": "AllowAppPortInbound",
+        "priority": 110,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefix": "Internet",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "8080",
+        "destinationPortRanges": [],
+        "description": "app listener"
+      }
+    ],
+    "defaultSecurityRules": [
+      {
+        "name": "DenyAllInBound",
+        "priority": 65500,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationPortRange": "*"
+      }
+    ]
+  },
+  {
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-vdi/providers/Microsoft.Network/networkSecurityGroups/vdi-nsg",
+    "name": "vdi-nsg",
+    "location": "eastus",
+    "resourceGroup": "rg-vdi",
+    "securityRules": [
+      {
+        "name": "AllowMyIpAddressRDPInbound",
+        "priority": 200,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefix": "*",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "3389",
+        "destinationPortRanges": [],
+        "description": "remote desktop"
+      },
+      {
+        "name": "AllowDbInbound",
+        "priority": 250,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefix": "10.0.0.0/8",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "",
+        "destinationPortRanges": ["1433", "5432"],
+        "description": "reporting"
+      }
+    ],
+    "defaultSecurityRules": [
+      {
+        "name": "DenyAllInBound",
+        "priority": 65500,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefix": "*",
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationPortRange": "*"
+      }
+    ]
+  }
+]
