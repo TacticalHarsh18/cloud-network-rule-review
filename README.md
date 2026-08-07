@@ -16,7 +16,7 @@ This repo contains the reasoning ([docs](#documentation)) and a tool that implem
 No dependencies beyond the Python standard library. Python 3.8+.
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/cloud-network-rule-review.git
+git clone https://github.com/TacticalHarsh18/cloud-network-rule-review.git
 cd cloud-network-rule-review
 
 python src/analyze.py \
