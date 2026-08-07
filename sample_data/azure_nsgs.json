@@ -172,6 +172,21 @@
         "destinationPortRange": "",
         "destinationPortRanges": ["1433", "5432"],
         "description": "reporting"
+      },
+      {
+        "name": "AllowIkeInbound",
+        "priority": 400,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Udp",
+        "sourceAddressPrefix": "Internet",
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "destinationAddressPrefix": "*",
+        "destinationAddressPrefixes": [],
+        "destinationPortRange": "",
+        "destinationPortRanges": ["500", "4500"],
+        "description": "site-to-site vpn"
       }
     ],
     "defaultSecurityRules": [
